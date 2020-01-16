@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Bangle.js App Loader (and Apps)
 ================================
 
@@ -292,3 +293,6 @@ The [`testing`](testing) folder contains snippets of code that might be useful f
 ## Credits
 
 The majority of icons used for these apps are from [Icons8](https://icons8.com/) - we have a commercial license but icons are also free for Open Source projects.
+=======
+# BangleWeb
+>>>>>>> 9fc1337ae8661db0c65bff8ee0bd001602496f06
