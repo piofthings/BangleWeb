@@ -4,4 +4,5 @@ export class Configuration
     public cert?: string;
     public dbName: string;
     public sessionSecret: string;
+    public mapboxAccessToken: string;
 }

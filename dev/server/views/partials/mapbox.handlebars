@@ -1,0 +1,36 @@
+<script>
+	mapboxgl.accessToken = "{{ mapboxAccessToken }}";
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-2.581434,51.44916216666],
+        zoom: 15
+    });
+
+    map.on('load', function() {
+        map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'properties': {},
+                    'geometry': {
+                        'type': 'LineString',
+                        'coordinates': [
+                             ]
+                    }
+                }
+            },
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#8080FF',
+                'line-width': 16
+            }
+        });
+    });
+</script>

@@ -2,14 +2,14 @@ import * as sqlite3 from "sqlite3";
 import * as path from "path";
 import * as fs from "fs";
 
-import {Config} from "../settings/config";
+import {ConfigService} from "../settings/config-service";
 
 export class Repository{
     private driver = sqlite3.verbose();
     private database : sqlite3.Database;
-    private config: Config;
+    private config: ConfigService;
 
-    constructor(config : Config){
+    constructor(config : ConfigService){
         this.config = config;
     }
 

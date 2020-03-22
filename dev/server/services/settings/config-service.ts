@@ -1,13 +1,17 @@
 import { Configuration } from "./configuration";
-var nconf  = require("nconf");
+import nconf from "nconf";
+import bunyan from "bunyan";
+
 import * as fs from "fs";
 
-export class Config {
-
+export class ConfigService {
+    logger: bunyan;
+    
     public currentSettings = new Configuration();
 
-    constructor()
+    constructor(logger: bunyan)
     {
+        this.logger = logger;
     }
 
     public load(callback: (currentSettings: Configuration) => void) : void
@@ -22,6 +26,7 @@ export class Config {
                 this.currentSettings.cert = nconf.get('cert');
                 this.currentSettings.sessionSecret = nconf.get('sessionSecret');
                 this.currentSettings.dbName = nconf.get('dbName');
+                this.currentSettings.mapboxAccessToken = nconf.get('mapboxAccessToken');
                 if(callback!=null)
                 {
                     callback(this.currentSettings);
@@ -30,7 +35,7 @@ export class Config {
         }
         catch(error)
         {
-            console.error(error);
+            this.logger.error(error);
         }
     }
 
@@ -58,7 +63,7 @@ export class Config {
     {
         nconf.save((err: any) => {
             fs.readFile('./config.json', (err, data) => {
-                console.dir(JSON.parse(data.toString()))
+                this.logger.info(JSON.parse(data.toString()));
             });
         });
     }
