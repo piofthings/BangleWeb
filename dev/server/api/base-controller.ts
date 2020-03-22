@@ -1,12 +1,9 @@
 import * as bunyan  from "bunyan";
-import { PassportLocalAuthenticator } from "../services/passport-local/passport-local-authenticator";
-import { ApiController } from "./api-controller";
+import { ApiController } from "./interfaces/api-controller";
 
 export class BaseController implements ApiController{
-    authenticator: PassportLocalAuthenticator;
     logger: bunyan;
-    constructor(auther: PassportLocalAuthenticator, logger: any){
-        this.authenticator = auther;
+    constructor(logger: any){
         this.logger = logger;
     }
 

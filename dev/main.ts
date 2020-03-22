@@ -60,7 +60,8 @@ export class web {
                     this.app.get('/', (req, res, next) => {
                         let homeViewModel = new Home();
                         homeViewModel.mapboxAccessToken = this.config.mapboxAccessToken;
-                        homeViewModel.title = "Title title";
+                        homeViewModel.title = "Bangle Web App";
+                        homeViewModel.header = "Bangle App";
                         res.render('home', homeViewModel);
                     });
 

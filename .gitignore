@@ -38,6 +38,7 @@ jspm_packages
 
 dev/**/*.js
 typings/
+logs/
 
 dev/www/typings
 out/
