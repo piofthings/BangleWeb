@@ -1,6 +1,4 @@
 import nconf from 'nconf';
-import { Configuration } from "./server/services/settings/configuration";
-import { ConfigService } from "./server/services/settings/config-service";
 import express from "express";
 import multer from "multer";
 import bunyan from "bunyan";
@@ -16,7 +14,12 @@ var favicon = require('serve-favicon');
 // var fs = require('fs');
 import http from 'http';
 import https from 'https';
+
+import { Configuration } from "./server/services/settings/configuration";
+import { ConfigService } from "./server/services/settings/config-service";
+import { CrossRouter } from './server/services/routing/cross-router';
 import { Home } from './server/models/view/home';
+import { Container } from './server/di/container';
 
 export class web {
     private app: express.Application;
@@ -36,7 +39,7 @@ export class web {
             streams: [
                 {
                     level: 'info',                  // logging level
-                    path: __dirname + '/logs/foo.log'
+                    path: __dirname + '/logs/bangleweb.log'
                 }
             ]
         });
@@ -44,13 +47,16 @@ export class web {
     }
 
     start = () => {
-
         try {
             this.configService.load((config: Configuration) => {
-                console.log("meh3");
+                config.runPath = __dirname;
                 this.app = express();
                 try {
                     this.config = config;
+                    Container.apiRouter = new CrossRouter("/api");
+                    Container.webRouter = new CrossRouter();
+                    Container.inject(config, this.logger);
+                    console.log("Container injected");
                     this.app.use(bodyParser.json());
                     this.app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -68,8 +74,8 @@ export class web {
                     this.app.use('/.well-known', express.static(__dirname + '/www/.well-known')); //static route for Letsncrypt validation
                     this.app.use('/posts/images', express.static(__dirname + '/posts/images')); //static route for Blog images
                     this.app.use(express.static(__dirname + '/www')); // All static stuff from /app/wwww
-
-
+                    // All HTTP API requests
+                    this.app.use('/api', Container.apiRouter.route);
 
                     // catch 404 and forward to error handler
 

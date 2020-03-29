@@ -25,8 +25,10 @@ export class ConfigService {
                 this.currentSettings.key = nconf.get('key');
                 this.currentSettings.cert = nconf.get('cert');
                 this.currentSettings.sessionSecret = nconf.get('sessionSecret');
-                this.currentSettings.dbName = nconf.get('dbName');
                 this.currentSettings.mapboxAccessToken = nconf.get('mapboxAccessToken');
+                this.currentSettings.dbName = nconf.get('dbName');
+                this.currentSettings.dbRootPath = nconf.get('dbRootPath');
+                this.currentSettings.dbNameSpace = nconf.get('dbNameSpace');
                 if(callback!=null)
                 {
                     callback(this.currentSettings);
