@@ -59,7 +59,11 @@ export class web {
                     console.log("Container injected");
                     this.app.use(bodyParser.json());
                     this.app.use(bodyParser.urlencoded({ extended: false }));
-
+                    this.app.use((req, res, next) => {
+                        // res.setHeader("Content-Security-Policy", "script-src * https://api.mapbox.com https://events.mapbox.com 'unsafe-eval'");
+                        return next();
+                    });
+                    
                     this.app.engine("handlebars", exphbs());
                     this.app.set("view engine", 'handlebars');
                     this.app.set('views', __dirname + '/server/views');

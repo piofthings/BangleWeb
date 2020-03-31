@@ -6,7 +6,7 @@ import { EventEmitter } from "events";
 
 export class CrossRouter extends EventEmitter {
     private nxt: any;
-    private services = [];
+    // private services = [];
     private router = crossroads.create();
     private rootPath: string = "";
 
