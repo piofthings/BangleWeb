@@ -8,16 +8,25 @@ export class viewModel {
      *
      */
 
+
+    private accessToken : string;
     private map : mapboxgl.Map;
-    constructor() {
-        // mapboxgl.accessToken = 'pk.eyJ1IjoicGlvZnRoaW5ncyIsImEiOiJjazVzaHV0NjcwbWFkM29tdTVvaTloZ2FpIn0.vNLjt3-eVlpQo2fmmll0FA';
+    constructor(params: any) {
+        if(params.accessToken != null){
+            this.accessToken = params.accessToken;
+        }
+        else{
+            let atElement = document.getElementById("accessToken");
+            
+        }
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-2.581434,51.44916216666],
             zoom: 15,
-            accessToken: 'pk.eyJ1IjoicGlvZnRoaW5ncyIsImEiOiJjazVzaHV0NjcwbWFkM29tdTVvaTloZ2FpIn0.vNLjt3-eVlpQo2fmmll0FA'
+            accessToken: this.accessToken
         });
+
         this.map.on('load', () => {
             this.map.addLayer({
                 'id': 'route',

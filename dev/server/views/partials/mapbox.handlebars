@@ -1,11 +1,2 @@
-{{!-- <script>
-	mapboxgl.accessToken = "{{ mapboxAccessToken }}";
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-2.581434,51.44916216666],
-        zoom: 15
-    });
-
-    
-</script> --}}
+<mapbox-map params="accessToken: '{{ mapboxAccessToken }}'"></mapbox-map>
+<input type="hidden" id="accessToken" value="{{ mapboxAccessToken }}" />
