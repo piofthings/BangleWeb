@@ -1,63 +1,57 @@
 <header class="fixed-top" data-bind="attr: { id: id }">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul data-bind="foreach: leftMenuItems">
-            <li data-bind="css: css, visible: isVisible">
-                <!-- ko if: href()!=='' -->
-                <a data-bind="{ attr: { href: href }, html: text, css: hrefCss }"></a>
-                <!-- /ko -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <!-- ko foreach: brandMenuItems -->
+            <!-- ko if: type() == 1 -->
+            <a data-bind="attr: { href: href }, html: text, css: hrefCss, visible: isVisible"></a>
+            <!--/ko-->
+            <!-- ko if: type() == 2 -->
+            <button data-bind="css: css, visible: isVisible" type="button">
                 <!-- ko ifnot: href()!=='' -->
                 <span data-bind="{ html: text, css: hrefCss }"></span>
                 <!-- /ko -->
-            </li>
-        </ul>
-        <ul data-bind="foreach: rightMenuItems" class="nav-header" style="float: right">
-            <li data-bind="css: css, visible: isVisible">
-                <!-- ko if: href()!=='' -->
-                <a data-bind="{ attr: { href: href }, html: text, css: hrefCss }"></a>
-                <!-- /ko -->
-                <!-- ko ifnot: href()!=='' -->
-                <span data-bind="{ html: text, css: hrefCss }"></span>
-                <!-- /ko -->
-            </li>
-        </ul>
-    </nav>
-    <nav class="mobile nav">
-        <div class="nav-header">
-            <a class="nav-menu-button">
-                <i class="fa fa-home" aria-hidden="true"></i>
-            </a>
-            <button class="nav-menu-button pull-right">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-                <ul class="dropdown">
-                    <!-- ko foreach: leftMenuItems -->
-
-                    <li data-bind="css: css, visible: isVisible">
-                        <!-- ko if: href()!=='' -->
-                        <a data-bind="{ attr: { href: href }, html: text, css: hrefCss }"></a>
-                        <!-- /ko -->
-                        <!-- ko ifnot: href()!=='' -->
-                        <span data-bind="{ html: text, css: hrefCss }"></span>
-                        <!-- /ko -->
-                    </li>
-                    <!-- /ko -->
-                    <!-- ko foreach: rightMenuItems -->
-                    <li data-bind="css: css">
-                        <!-- ko if: href()!=='' -->
-                        <a data-bind="{ attr: { href: href }, html: text, css: hrefCss }"></a>
-                        <!-- /ko -->
-                        <!-- ko ifnot: href()!=='' -->
-                        <span data-bind="{ html: text, css: hrefCss }"></span>
-                        <!-- /ko -->
-                    </li>
-                    <!-- /ko -->
-                    <!-- <li class="nav-menu-item">
-                        Projects
-                    </li>
-                    <li class="nav-menu-item">
-                        Blogs
-                    </li> -->
-                </ul>
             </button>
+            <!--/ko-->
+            <!-- ko if: type() == 3 -->
+            <a class="navbar-burger burger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <!--/ko-->
+            <!--/ko-->
+        </div>
+        <div class="navbar-menu" id="navbarSupportedContent">
+            <div class="navbar-start">
+                <!-- ko foreach: leftMenuItems -->
+                <div class="navbar-item">
+                    <!-- ko if: type() == 1 -->
+                    <a data-bind="attr: { href: href }, html: text, css: hrefCss, visible: isVisible"></a>
+                    <!--/ko-->
+                    <!-- ko if: type() == 2 -->
+                    <button data-bind="css: css, visible: isVisible" type="button">
+                        <!-- ko ifnot: href()!=='' -->
+                        <span data-bind="{ html: text, css: hrefCss }"></span>
+                        <!-- /ko -->
+                    </button>
+                    <!--/ko-->
+                </div>
+                <!--/ko-->
+            </div>
+            <div class="navbar-end">
+                <!-- ko foreach: rightMenuItems -->
+                <li data-bind="css: css, visible: isVisible">
+                    <!-- ko if: href()!=='' -->
+                    <a data-bind="{ attr: { href: href }, html: text, css: hrefCss }"></a>
+                    <!-- /ko -->
+                    <!-- ko ifnot: href()!=='' -->
+                    <span data-bind="{ html: text, css: hrefCss }"></span>
+                    <!-- /ko -->
+                </li>
+                <!-- /ko -->
+
+            </div>
         </div>
     </nav>
 </header>

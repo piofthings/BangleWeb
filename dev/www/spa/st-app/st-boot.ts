@@ -3,18 +3,16 @@ requirejs.config(
         baseUrl: '/spa',
         paths:
         {
-            "jQuery": "/libs/jquery/jquery-3.2.1.min",
-            "crossroads": "/libs/crossroads/crossroads.min",
-            "signals": "/libs/crossroads/signals.min",
-            "knockout": "/libs/knockout/knockout-latest",
-            "text": "/libs/requirejs/text",
-            "RSVP": "/libs/rsvp/rsvp",
             "amplify": "/libs/amplify/amplify.min",
-            "toastr": "/libs/toastr/toastr.min",
-            "bootstrap": "/libs/bootstrap/bootstrap",
+            "crossroads": "/libs/crossroads/crossroads.min",
+            "jQuery": "/libs/jquery/jquery-3.2.1.min",
+            "knockout": "/libs/knockout/knockout-latest",
             "mapbox-gl": "/libs/mapbox/mapbox-gl",
-            "spa": "st-app/st-app"
-
+            "RSVP": "/libs/rsvp/rsvp",
+            "signals": "/libs/crossroads/signals.min",
+            "spa": "st-app/st-app",
+            "text": "/libs/requirejs/text",
+            "toastr": "/libs/toastr/toastr.min",
         },
         shim:
         {
@@ -27,9 +25,6 @@ requirejs.config(
                 exports: "toastr",
                 deps: ["jQuery"]
             },
-            "bootstrap": {
-                deps: ["jQuery"]
-            },
             "knockout": {
                 deps: ["jQuery"]
             },
@@ -39,7 +34,7 @@ requirejs.config(
         }
     });
 
-requirejs(["jQuery", "knockout", "spa", "text", "RSVP", "amplify", "bootstrap"], ($: JQuery, ko: KnockoutStatic, app: any) => {
+requirejs(["jQuery", "knockout", "spa", "text", "RSVP", "amplify"], ($: JQuery, ko: KnockoutStatic, app: any) => {
     window.app = null;
     window.app = <SilkThreadStatic>new app.SilkThread();
 

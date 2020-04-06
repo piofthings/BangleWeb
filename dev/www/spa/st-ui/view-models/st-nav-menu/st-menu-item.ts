@@ -1,6 +1,8 @@
 import * as ko from "knockout";
+import { MenuItemType } from "./st-menu-item-type";
 
 export class stMenuItem implements MenuItem {
+    type: KnockoutObservable<MenuItemType> = ko.observable<MenuItemType>(MenuItemType.Anchor);
     text: KnockoutObservable<string> = ko.observable<string>("");
     href: KnockoutObservable<string> = ko.observable<string>("");
     css: KnockoutObservable<string> = ko.observable<string>("");
